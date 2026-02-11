@@ -3548,6 +3548,16 @@ input:-internal-autofill-selected {
 
 /* ===== CONTACT SECTION STYLING ===== */
 
+#contato {
+  overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#contato::-webkit-scrollbar {
+  display: none !important;
+}
+
 #contato .contact-form {
   padding: 30px !important;
   border-radius: 14px !important;
@@ -3556,6 +3566,12 @@ input:-internal-autofill-selected {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28) !important;
   position: relative !important;
   overflow: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#contato .contact-form::-webkit-scrollbar {
+  display: none !important;
 }
 
 #contato .contact-form::before {
@@ -3590,6 +3606,12 @@ input:-internal-autofill-selected {
 #contato textarea.form-control {
   min-height: 160px !important;
   resize: vertical !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#contato textarea.form-control::-webkit-scrollbar {
+  display: none !important;
 }
 
 #contato .btn.btn-primary {
@@ -3615,9 +3637,21 @@ html,
 body {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
+  overflow-x: hidden !important;
 }
 
+html::-webkit-scrollbar,
 body::-webkit-scrollbar {
+  display: none !important;
   width: 0 !important;
   height: 0 !important;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
 }
