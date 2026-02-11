@@ -425,8 +425,7 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 
 <div align="center">
 
-**Desenvolvido com ❤️ por Ronaldo Avansini**
+**Desenvolvido por Ronaldo Avansini**
 
-⭐ Se gostou do projeto, deixe uma estrela!
 
 </div>
