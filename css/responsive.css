@@ -1,0 +1,189 @@
+/* ===================================
+   Responsive Design & Media Queries
+   =================================== */
+
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 220px;
+    }
+    
+    nav .container-lg {
+        width: calc(100% - var(--sidebar-width));
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.8rem;
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        padding: 30px 15px;
+    }
+
+    .sidebar-profile-img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .nav-link {
+        font-size: 0.95rem !important;
+        padding: 10px 14px !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sidebar-width: 0;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        transition: left var(--transition-normal);
+        border-right: 1px solid var(--border);
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    nav {
+        left: 0 !important;
+    }
+
+    nav .container-lg {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .hero {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 60px;
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .stats {
+        margin-left: 0;
+        width: 100%;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    section {
+        margin-left: 0;
+        width: 100%;
+        padding: 60px 20px;
+        box-sizing: border-box;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+    footer {
+        margin-left: 0;
+        width: 100%;
+        padding: 30px 20px;
+        box-sizing: border-box;
+    }
+
+    .skill-bar {
+        height: 8px;
+    }
+
+    .experience-item {
+        grid-template-columns: 100px 1fr;
+        gap: 20px;
+    }
+
+    .nav-link {
+        font-size: 0.9rem !important;
+        padding: 10px 12px !important;
+    }
+
+    .navbar-brand {
+        font-size: 1rem !important;
+    }
+
+    nav .navbar-toggler {
+        border: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar.active {
+        width: 220px;
+        padding: 20px 15px;
+    }
+
+    .sidebar-profile-img {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 15px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1rem;
+    }
+
+    .sidebar-header {
+        margin-bottom: 30px;
+    }
+
+    .sidebar-nav-item {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    .sidebar-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        left: 15px;
+        top: 12px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .section-title h2 {
+        font-size: 1.5rem;
+    }
+
+    .skill-bar {
+        height: 6px;
+    }
+}
