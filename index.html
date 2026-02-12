@@ -29,11 +29,17 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/main.css">
     
+    <!-- Animations CSS -->
+    <link rel="stylesheet" href="css/animations.css">
+    
     <!-- Custom CSS Overrides -->
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
-    <!-- Sidebar Toggle Button -->
+    <!-- Sidebar Trigger Area (Desktop only) -->
+    <div class="sidebar-trigger" id="sidebarTrigger"></div>
+
+    <!-- Sidebar Toggle Button (Mobile only) -->
     <button class="sidebar-toggle" id="sidebarToggle">
         <i class="fas fa-bars"></i>
     </button>
@@ -126,7 +132,9 @@
             <div class="section-title">
                 <h2>Sobre Mim</h2>
                 <div class="title-underline"></div>
-                <p>Um pouco sobre quem sou</p>
+                <p>Durante minha jornada de aprendizado, tive a oportunidade de aplicar conceitos em projetos práticos, onde desenvolvi aplicações em Java e Node.js, e construí interfaces web interativas utilizando HTML, CSS e JavaScript. Também possuo experiência com C++ e com a estruturação e desenvolvimento de Bancos de Dados, compreendendo a importância de um back-end bem fundamentado para o sucesso de qualquer aplicação.
+
+Acredito no aprendizado contínuo e, por isso, invisto meu tempo em plataformas como a Alura para expandir minhas competências. Atualmente, estou aprofundando meus conhecimentos em Python e C#, além de reforçar conceitos essenciais como boas práticas de programação e lógica, que considero a base para a escrita de um código limpo, eficiente e escalável.</p>
             </div>
 
             <div class="about-content">
@@ -391,6 +399,7 @@
     <script src="vendor/jquery/jquery.min.js" defer></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
     <script src="js/theme.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
 
     <script>
         // Observador para animações de scroll
