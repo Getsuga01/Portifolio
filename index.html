@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ronaldo Avansini - Desenvolvedor Full Stack especializado em Front-end, Back-end e Banco de Dados. Baseado em Ribeirão Preto - SP.">
-    <meta name="theme-color" content="#6366f1">
+    <meta name="theme-color" content="#09090b">
     <meta name="author" content="Ronaldo Avansini">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="vendor/font-awesome/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -18,6 +18,17 @@
 </head>
 <body>
 
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Background Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
 
@@ -25,16 +36,19 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <a class="navbar-logo" href="#hero">
+                <svg class="navbar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+                <span class="logo-text">RONALDO<span class="logo-accent">.DEV</span></span>
             </a>
             <ul class="navbar-links" id="navLinks">
-                <li><a href="#hero" class="nav-link active">Início</a></li>
-                <li><a href="#about" class="nav-link">Sobre</a></li>
-                <li><a href="#services" class="nav-link">Serviços</a></li>
-                <li><a href="#skills" class="nav-link">Habilidades</a></li>
-                <li><a href="#experience" class="nav-link">Experiência</a></li>
-                <li><a href="#projects" class="nav-link">Projetos</a></li>
-                <li><a href="#contact" class="nav-link">Contato</a></li>
+                <li><a href="#hero" class="nav-link active">INÍCIO</a></li>
+                <li><a href="#about" class="nav-link">SOBRE</a></li>
+                <li><a href="#skills" class="nav-link">SKILLS</a></li>
+                <li><a href="#projects" class="nav-link">PROJETOS</a></li>
+                <li><a href="#contact" class="nav-link">CONTATO</a></li>
             </ul>
+            <a href="#contact" class="nav-cta">Contactar</a>
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -43,123 +57,61 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
-        <div class="hero-bg">
-            <div class="hero-orbs">
-                <div class="orb orb-1"></div>
-                <div class="orb orb-2"></div>
-                <div class="orb orb-3"></div>
-                <div class="orb orb-4"></div>
-            </div>
-        </div>
-        <div class="container hero-content">
-            <span class="hero-badge">Olá, eu sou</span>
-            <h1 class="hero-title">Ronaldo Avansini</h1>
-            <p class="hero-subtitle">
-                <span class="typed-text" id="typedText"></span>
-                <span class="cursor">&nbsp;</span>
-            </p>
-            <p class="hero-description">
-                Desenvolvedor Full Stack apaixonado por criar soluções elegantes, performáticas e escaláveis. Transformo ideias em código de qualidade.
-            </p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Entrar em Contato
-                </a>
-                <a href="#projects" class="btn btn-outline">
-                    <i class="fas fa-code"></i> Ver Projetos
-                </a>
-            </div>
-            <div class="hero-social">
-                <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://instagram.com/ronaldoavansini" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://api.whatsapp.com/send?phone=5519993541387" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Disponível para novos desafios
+                    </div>
+                    <h1 class="hero-title">
+                        Olá, eu sou<br>
+                        <span class="hero-title-gradient">Ronaldo Avansini</span>
+                    </h1>
+                    <div class="hero-typewriter">
+                        <span class="typed-text" id="typedText"></span>
+                        <span class="cursor-blink">|</span>
+                    </div>
+                    <p class="hero-description">
+                        Transformo ideias complexas em interfaces elegantes e sistemas robustos. 
+                        Foco no minimalismo, performance e código limpo.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            Explorar Portfólio
+                        </a>
+                        <div class="hero-social">
+                            <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://api.whatsapp.com/send?phone=5516993541387" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="morph-wrapper">
+                        <div class="morph-bg"></div>
+                        <div class="morph-inner">
+                            <img src="img/profile.png" alt="Ronaldo Avansini" class="morph-img" loading="lazy">
+                            <div class="morph-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48">
+                                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-mouse">
-                <div class="scroll-dot"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Sobre Mim</span>
-                <h2 class="section-title">Conheça um pouco da minha <span class="gradient-text">história</span></h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-image-wrapper">
-                    <div class="about-avatar">
-                        <img src="img/profile.png" alt="Ronaldo Avansini" class="about-img" loading="lazy">
-                    </div>
-                    <div class="about-stats-mini">
-                        <div class="mini-stat">
-                            <span class="mini-stat-num">8+</span>
-                            <span class="mini-stat-label">Tecnologias</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-stat-num">3+</span>
-                            <span class="mini-stat-label">Bancos de Dados</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="mini-stat-num">3</span>
-                            <span class="mini-stat-label">Idiomas</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <h3 class="about-heading">Desenvolvedor Full Stack & Entusiasta de Tecnologia</h3>
-                    <p class="about-text">
-                        Durante minha jornada de aprendizado, tive a oportunidade de aplicar conceitos em projetos práticos, onde desenvolvi aplicações em Java e Node.js, e construí interfaces web interativas utilizando HTML, CSS e JavaScript. Também possuo experiência com C++ e com a estruturação e desenvolvimento de Bancos de Dados, compreendendo a importância de um back-end bem fundamentado para o sucesso de qualquer aplicação.
-                    </p>
-                    <p class="about-text">
-                        Acredito no aprendizado contínuo e, por isso, invisto meu tempo em expandir minhas competências. Atualmente, estou aprofundando meus conhecimentos em Python e C#, além de reforçar boas práticas de programação e lógica, que considero a base para a escrita de um código limpo, eficiente e escalável.
-                    </p>
-                    <div class="about-info-grid">
-                        <div class="about-info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <strong>Formação</strong>
-                                <span>Ciência da Computação - Barão de Mauá (8º semestre)</span>
-                            </div>
-                        </div>
-                        <div class="about-info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Localização</strong>
-                                <span>Ribeirão Preto - SP</span>
-                            </div>
-                        </div>
-                        <div class="about-info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <a href="mailto:contato.ronaldoavansini@outlook.com">contato.ronaldoavansini@outlook.com</a>
-                            </div>
-                        </div>
-                        <div class="about-info-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>WhatsApp</strong>
-                                <a href="https://api.whatsapp.com/send?phone=5519993541387" target="_blank">(19) 99354-1387</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
         </div>
     </section>
 
@@ -168,22 +120,18 @@
         <div class="container">
             <div class="stats-grid" id="statsGrid">
                 <div class="stat-card">
-                    <i class="fas fa-code"></i>
                     <div class="stat-number" data-target="11">0</div>
                     <span class="stat-label">Tecnologias</span>
                 </div>
                 <div class="stat-card">
-                    <i class="fas fa-database"></i>
                     <div class="stat-number" data-target="3">0</div>
                     <span class="stat-label">Bancos de Dados</span>
                 </div>
                 <div class="stat-card">
-                    <i class="fas fa-book"></i>
                     <div class="stat-number" data-target="8">0</div>
-                    <span class="stat-label">Semestre - Cursando</span>
+                    <span class="stat-label">Semestre Cursando</span>
                 </div>
                 <div class="stat-card">
-                    <i class="fas fa-globe"></i>
                     <div class="stat-number" data-target="3">0</div>
                     <span class="stat-label">Idiomas</span>
                 </div>
@@ -191,56 +139,43 @@
         </div>
     </section>
 
-    <!-- Services -->
-    <section class="section" id="services">
+    <!-- About -->
+    <section class="section" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Serviços</span>
-                <h2 class="section-title">O que eu <span class="gradient-text">faço</span></h2>
-                <div class="section-divider"></div>
+                <h2 class="section-title">Sobre Mim</h2>
+                <p class="section-subtitle">Conheça um pouco da minha trajetória</p>
             </div>
-            <div class="services-grid" id="servicesGrid">
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
+            <div class="about-grid">
+                <div class="about-content reveal">
+                    <p class="about-text">
+                        Desenvolvedor Full Stack com experiência em aplicações web e sistemas corporativos,
+                        atuando no front-end e back-end. Forte base em Ciência da Computação, integração de sistemas,
+                        bancos de dados e boas práticas de desenvolvimento.
+                    </p>
+                    <p class="about-text">
+                        Durante minha jornada, desenvolvi aplicações em Java, Node.js, C++ e construí interfaces
+                        web interativas utilizando HTML, CSS e JavaScript. Atualmente aprofundando conhecimentos
+                        em Python e C# para expandir ainda mais meu arsenal técnico.
+                    </p>
+                    <div class="about-details">
+                        <div class="about-detail">
+                            <span class="about-detail-label">Formação</span>
+                            <span class="about-detail-value">Ciência da Computação — Barão de Mauá (8º semestre)</span>
+                        </div>
+                        <div class="about-detail">
+                            <span class="about-detail-label">Localização</span>
+                            <span class="about-detail-value">Ribeirão Preto — SP</span>
+                        </div>
+                        <div class="about-detail">
+                            <span class="about-detail-label">Email</span>
+                            <a href="mailto:contato.ronaldoavansini@outlook.com" class="about-detail-value link">contato.ronaldoavansini@outlook.com</a>
+                        </div>
+                        <div class="about-detail">
+                            <span class="about-detail-label">WhatsApp</span>
+                            <a href="https://api.whatsapp.com/send?phone=5516993541387" target="_blank" class="about-detail-value link">(16) 993541387</a>
+                        </div>
                     </div>
-                    <h3 class="service-title">Front-end</h3>
-                    <p class="service-desc">Desenvolvimento de interfaces responsivas e acessíveis. Criação de componentes reutilizáveis e layouts otimizados com foco em performance.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="service-title">Back-end</h3>
-                    <p class="service-desc">Integração de sistemas, boas práticas de desenvolvimento e infraestrutura sólida para aplicações corporativas escaláveis.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3 class="service-title">Banco de Dados</h3>
-                    <p class="service-desc">Modelagem, otimização de consultas SQL e manutenção de integridade de dados em MySQL, SQL Server e Oracle.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-                    <h3 class="service-title">Dynamics 365 F&O</h3>
-                    <p class="service-desc">Customizações, automações, implementação de regras de negócio e testes funcionais em X++ para o ecossistema Microsoft.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-puzzle-piece"></i>
-                    </div>
-                    <h3 class="service-title">Integração de Sistemas</h3>
-                    <p class="service-desc">Conectando diferentes plataformas e sistemas corporativos com eficiência, confiabilidade e segurança.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">Análise & Desenvolvimento</h3>
-                    <p class="service-desc">Perfil analítico orientado à qualidade, resultados e boas práticas de desenvolvimento com foco em código limpo.</p>
                 </div>
             </div>
         </div>
@@ -249,120 +184,146 @@
     <!-- Skills -->
     <section class="section section-alt" id="skills">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Habilidades</span>
-                <h2 class="section-title">Minhas <span class="gradient-text">Competências</span></h2>
-                <div class="section-divider"></div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Stack Tecnológica</h2>
+                <p class="section-subtitle">Ferramentas selecionadas para engenharia de ponta</p>
             </div>
             <div class="skills-grid" id="skillsGrid">
-                <div class="skill-group">
-                    <div class="skill-item">
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">Frontend</h3>
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-html5"></i> HTML & CSS</span>
                             <span class="skill-percent" data-target="95">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="95"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-js"></i> JavaScript</span>
                             <span class="skill-percent" data-target="90">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-react"></i> React</span>
                             <span class="skill-percent" data-target="85">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-vuejs"></i> Vue.js</span>
                             <span class="skill-percent" data-target="80">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
                     </div>
                 </div>
-                <div class="skill-group">
-                    <div class="skill-item">
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">Backend & Dados</h3>
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-node-js"></i> Node.js</span>
                             <span class="skill-percent" data-target="85">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-python"></i> Python</span>
                             <span class="skill-percent" data-target="75">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fas fa-database"></i> SQL & Databases</span>
                             <span class="skill-percent" data-target="88">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
                     </div>
-                    <div class="skill-item">
+                    <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-git-alt"></i> Git & GitHub</span>
                             <span class="skill-percent" data-target="92">0%</span>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="92"></div>
-                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience -->
-    <section class="section" id="experience">
+    <!-- Services -->
+    <section class="section" id="services">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Experiência</span>
-                <h2 class="section-title">Trajetória <span class="gradient-text">Profissional</span></h2>
-                <div class="section-divider"></div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Serviços</h2>
+                <p class="section-subtitle">O que eu faço</p>
+            </div>
+            <div class="services-grid" id="servicesGrid">
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3 class="service-title">Front-end</h3>
+                    <p class="service-desc">Interfaces responsivas e acessíveis com componentes reutilizáveis e layouts otimizados para performance.</p>
+                </div>
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="service-title">Back-end</h3>
+                    <p class="service-desc">Integração de sistemas, boas práticas de desenvolvimento e infraestrutura sólida para aplicações corporativas.</p>
+                </div>
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-database"></i></div>
+                    <h3 class="service-title">Banco de Dados</h3>
+                    <p class="service-desc">Modelagem, otimização de consultas SQL e integridade de dados em MySQL, SQL Server e Oracle.</p>
+                </div>
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-cubes"></i></div>
+                    <h3 class="service-title">Dynamics 365 F&O</h3>
+                    <p class="service-desc">Customizações, automações e testes funcionais em X++ para o ecossistema Microsoft.</p>
+                </div>
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3 class="service-title">Integração de Sistemas</h3>
+                    <p class="service-desc">Conectando plataformas e sistemas corporativos com eficiência, confiabilidade e segurança.</p>
+                </div>
+                <div class="service-card" data-tilt>
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="service-title">Análise & Desenvolvimento</h3>
+                    <p class="service-desc">Perfil analítico orientado à qualidade, resultados e boas práticas de desenvolvimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section section-alt" id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Experiência</h2>
+                <p class="section-subtitle">Trajetória profissional</p>
             </div>
             <div class="timeline" id="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-tag">Front-end</span>
                         <h3>Desenvolvedor Web – Front-end</h3>
                         <div class="timeline-company">HTML &bull; CSS &bull; JavaScript</div>
-                        <p>Desenvolvimento de interfaces responsivas e acessíveis. Criação de componentes reutilizáveis e layouts otimizados com compatibilidade entre navegadores e foco em performance.</p>
+                        <p>Desenvolvimento de interfaces responsivas e acessíveis. Criação de componentes reutilizáveis e layouts otimizados com foco em performance.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-tag">Dynamics 365</span>
                         <h3>Desenvolvedor Dynamics 365 F&O</h3>
                         <div class="timeline-company">X++ &bull; Integrações &bull; Processos de Negócio</div>
-                        <p>Customizações e automações no Dynamics 365. Implementação de regras de negócio, testes funcionais, revisão de código e manutenção evolutiva.</p>
+                        <p>Customizações e automações no Dynamics 365. Implementação de regras de negócio, testes funcionais e manutenção evolutiva.</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-tag">Back-end</span>
@@ -376,14 +337,13 @@
     </section>
 
     <!-- Projects -->
-    <section class="section section-alt" id="projects">
+    <section class="section" id="projects">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Projetos</span>
-                <h2 class="section-title">Trabalhos <span class="gradient-text">Recentes</span></h2>
-                <div class="section-divider"></div>
+            <div class="section-header reveal">
+                <h2 class="section-title">Trabalhos</h2>
+                <p class="section-subtitle">Projetos selecionados</p>
             </div>
-            <div class="projects-header">
+            <div class="projects-header reveal">
                 <div class="projects-filter" id="projectsFilter">
                     <button class="filter-btn active" data-filter="all">Todos</button>
                     <button class="filter-btn" data-filter="frontend">Front-end</button>
@@ -393,82 +353,74 @@
             </div>
             <div class="projects-grid" id="projectsGrid">
 
-                <div class="project-card" data-category="fullstack">
+                <div class="project-card" data-category="fullstack" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-placeholder">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> Ver Código
-                            </a>
+                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>E-Commerce Platform</h3>
                         <div class="project-tags">
                             <span>React</span><span>Node.js</span><span>MongoDB</span>
                         </div>
+                        <h3>E-Commerce Platform</h3>
                         <p>Plataforma de e-commerce completa com carrinho, autenticação e painel administrativo.</p>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="frontend">
+                <div class="project-card" data-category="frontend" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-placeholder">
-                            <i class="fas fa-dashboard"></i>
-                        </div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-chart-bar"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> Ver Código
-                            </a>
+                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Dashboard Analytics</h3>
                         <div class="project-tags">
                             <span>React</span><span>Chart.js</span><span>CSS</span>
                         </div>
+                        <h3>Dashboard Analytics</h3>
                         <p>Dashboard interativo para visualização de dados com gráficos dinâmicos e dark mode.</p>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="backend">
+                <div class="project-card" data-category="backend" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-placeholder">
-                            <i class="fas fa-cloud"></i>
-                        </div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-cloud"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> Ver Código
-                            </a>
+                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>API RESTful</h3>
                         <div class="project-tags">
                             <span>Node.js</span><span>Express</span><span>PostgreSQL</span>
                         </div>
+                        <h3>API RESTful</h3>
                         <p>API completa com autenticação JWT, validação de dados e documentação Swagger.</p>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="frontend">
+                <div class="project-card" data-category="frontend" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-placeholder">
-                            <i class="fas fa-film"></i>
-                        </div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-film"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link">
-                                <i class="fab fa-github"></i> Ver Código
-                            </a>
+                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Movie Finder</h3>
                         <div class="project-tags">
                             <span>Vue.js</span><span>API</span><span>SCSS</span>
                         </div>
+                        <h3>Movie Finder</h3>
                         <p>Aplicativo para busca de filmes com integração de API externa e design responsivo.</p>
                     </div>
                 </div>
@@ -478,83 +430,61 @@
     </section>
 
     <!-- Contact -->
-    <section class="section" id="contact">
+    <section class="section section-alt" id="contact">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Contato</span>
-                <h2 class="section-title">Vamos trabalhar <span class="gradient-text">juntos</span></h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Entre em contato</h3>
-                    <p>Estou disponível para novos projetos, parcerias e oportunidades. Me mande uma mensagem!</p>
-                    <div class="contact-details">
+            <div class="contact-card" data-tilt>
+                <div class="contact-header">
+                    <i class="fas fa-envelope contact-header-icon"></i>
+                    <h2 class="section-title">Iniciar um Projeto</h2>
+                    <p class="section-subtitle">Estou disponível para novos desafios. Mande uma mensagem!</p>
+                </div>
+                <div class="contact-body">
+                    <div class="contact-info-side">
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
+                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <strong>Email</strong>
                                 <a href="mailto:contato.ronaldoavansini@outlook.com">contato.ronaldoavansini@outlook.com</a>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
+                            <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
                             <div>
-                                <strong>Telefone</strong>
-                                <a href="https://api.whatsapp.com/send?phone=5519993541387" target="_blank">(19) 99354-1387</a>
+                                <strong>WhatsApp</strong>
+                                <a href="https://api.whatsapp.com/send?phone=5516993541387" target="_blank">(16) 993541387</a>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
+                            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
                                 <strong>Localização</strong>
-                                <span>Ribeirão Preto - SP</span>
+                                <span>Ribeirão Preto — SP</span>
                             </div>
                         </div>
+                        <div class="contact-social">
+                            <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://instagram.com/ronaldoavansini" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
-                    <div class="contact-social">
-                        <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://instagram.com/ronaldoavansini" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="formName" class="form-input" required placeholder=" ">
+                            <label for="formName" class="form-label">Seu Nome</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="formEmail" class="form-input" required placeholder=" ">
+                            <label for="formEmail" class="form-label">Seu Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="formMessage" class="form-input" rows="4" required placeholder=" "></textarea>
+                            <label for="formMessage" class="form-label">Sua Mensagem</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            Enviar Mensagem <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="formName" class="form-input" required>
-                        <label for="formName" class="form-label">Seu Nome</label>
-                        <span class="form-line"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="formEmail" class="form-input" required>
-                        <label for="formEmail" class="form-label">Seu Email</label>
-                        <span class="form-line"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="formSubject" class="form-input" required>
-                        <label for="formSubject" class="form-label">Assunto</label>
-                        <span class="form-line"></span>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="formMessage" class="form-input" rows="4" required></textarea>
-                        <label for="formMessage" class="form-label">Sua Mensagem</label>
-                        <span class="form-line"></span>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
-                    </button>
-                </form>
             </div>
         </div>
     </section>
@@ -562,61 +492,28 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
+            <div class="footer-inner">
                 <div class="footer-brand">
-                    <h3>Ronaldo<span class="logo-accent">.</span></h3>
-                    <p>Desenvolvedor Full Stack | Ribeirão Preto - SP</p>
-                    <p class="footer-tagline">Transformando ideias em soluções digitais com código limpo e performance.</p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                    <span>RONALDO.DEV</span>
                 </div>
+                <p class="footer-copy">&copy; 2026 Ronaldo Avansini. Todos os direitos reservados.</p>
                 <div class="footer-links">
-                    <h4>Navegação</h4>
-                    <ul>
-                        <li><a href="#hero">Início</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#services">Serviços</a></li>
-                        <li><a href="#projects">Projetos</a></li>
-                        <li><a href="#contact">Contato</a></li>
-                    </ul>
+                    <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/ronaldoavansini" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="footer-links">
-                    <h4>Serviços</h4>
-                    <ul>
-                        <li><a href="#services">Front-end</a></li>
-                        <li><a href="#services">Back-end</a></li>
-                        <li><a href="#services">Banco de Dados</a></li>
-                        <li><a href="#services">Dynamics 365</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Redes Sociais</h4>
-                    <div class="footer-social-links">
-                        <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/ronaldo-avansini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://instagram.com/ronaldoavansini" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?phone=5519993541387" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Ronaldo Avansini. Todos os direitos reservados.</p>
-                <p class="footer-made-with">
-                    <i class="fas fa-heart"></i> Feito com dedicação
-                </p>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
     </button>
 
     <script src="js/main.js" defer></script>

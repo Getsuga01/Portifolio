@@ -407,7 +407,7 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 
 **Ronaldo Avansini**
 - 📧 Email: contato.ronaldoavansini@outlook.com
-- 📱 WhatsApp: (19) 99354-1387
+- 📱 WhatsApp: (16) 993541387
 - 📍 Localização: Ribeirão Preto - SP
 - 🌐 Portfolio: [Link do GitHub Pages]
 
