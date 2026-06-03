@@ -284,6 +284,115 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* --- Spotlight --- */
+    const spotlight = document.getElementById('spotlight');
+    if (spotlight) {
+        let spotlightVisible = false;
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            spotlight.style.background =
+                `radial-gradient(600px at ${x}% ${y}%, rgba(255, 255, 255, 0.035), transparent 60%)`;
+            if (!spotlightVisible) {
+                spotlight.classList.add('visible');
+                spotlightVisible = true;
+            }
+        });
+    }
+
+    /* --- Magnetic Buttons --- */
+    document.querySelectorAll('[data-magnetic]').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            btn.style.transform = `translate(${x * 12}px, ${y * 8}px)`;
+            btn.style.transition = 'transform 0.1s ease-out';
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+            btn.style.transition = 'transform 0.3s ease-out';
+        });
+    });
+
+    /* --- Navigation Dots --- */
+    const navDots = document.getElementById('navDots');
+    const navDotItems = document.querySelectorAll('.nav-dot');
+
+    if (navDots && navDotItems.length) {
+        const dotSections = ['hero', 'about', 'skills', 'projects', 'contact'];
+
+        function updateDots() {
+            let current = '';
+            const scrollY = window.scrollY + 200;
+
+            dotSections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section && scrollY >= section.offsetTop &&
+                    scrollY < section.offsetTop + section.offsetHeight) {
+                    current = id;
+                }
+            });
+
+            navDotItems.forEach(dot => {
+                dot.classList.toggle('active', dot.dataset.section === current);
+            });
+        }
+
+        window.addEventListener('scroll', updateDots, { passive: true });
+        updateDots();
+
+        navDotItems.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.getElementById(dot.dataset.section);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    }
+
+    /* --- Reveal Text Letter by Letter --- */
+    const revealTexts = document.querySelectorAll('[data-reveal-text]');
+    if (revealTexts.length) {
+        const revealTextObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const text = el.textContent.trim();
+                    el.textContent = '';
+                    const chars = text.split('');
+                    chars.forEach((char, i) => {
+                        const span = document.createElement('span');
+                        span.className = 'reveal-char';
+                        span.textContent = char === ' ' ? '\u00A0' : char;
+                        span.style.animationDelay = i * 20 + 'ms';
+                        el.appendChild(span);
+                    });
+                    revealTextObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        revealTexts.forEach(el => revealTextObserver.observe(el));
+    }
+
+    /* --- Download CV --- */
+    const btnCv = document.getElementById('btnCv');
+    if (btnCv) {
+        btnCv.addEventListener('click', () => {
+            btnCv.innerHTML = '<i class="fas fa-file-pdf"></i> CV não encontrado';
+            btnCv.style.opacity = '0.5';
+            btnCv.disabled = true;
+            setTimeout(() => {
+                btnCv.innerHTML = '<i class="fas fa-download"></i> Download CV';
+                btnCv.style.opacity = '1';
+                btnCv.disabled = false;
+            }, 2000);
+        });
+    }
+
     /* --- Smooth Scroll --- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {

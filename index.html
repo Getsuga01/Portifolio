@@ -22,6 +22,12 @@
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
+    <!-- Spotlight -->
+    <div class="spotlight" id="spotlight"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
     <!-- Background Blobs -->
     <div class="bg-blobs">
         <div class="blob blob-1"></div>
@@ -77,9 +83,12 @@
                         Foco no minimalismo, performance e código limpo.
                     </p>
                     <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">
+                        <a href="#projects" class="btn btn-primary" data-magnetic>
                             Explorar Portfólio
                         </a>
+                        <button class="btn btn-outline" data-magnetic id="btnCv">
+                            <i class="fas fa-download"></i> Download CV
+                        </button>
                         <div class="hero-social">
                             <a href="https://github.com/Getsuga01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                                 <i class="fab fa-github"></i>
@@ -115,8 +124,41 @@
         </div>
     </section>
 
+    <!-- Tech Marquee -->
+    <section class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span><i class="fab fa-html5"></i> HTML5</span>
+                <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span><i class="fab fa-js"></i> JavaScript</span>
+                <span><i class="fab fa-react"></i> React</span>
+                <span><i class="fab fa-vuejs"></i> Vue.js</span>
+                <span><i class="fab fa-node-js"></i> Node.js</span>
+                <span><i class="fab fa-python"></i> Python</span>
+                <span><i class="fas fa-database"></i> SQL</span>
+                <span><i class="fab fa-git-alt"></i> Git</span>
+                <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                <span><i class="fas fa-code"></i> C++</span>
+                <span><i class="fab fa-microsoft"></i> C#</span>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span><i class="fab fa-html5"></i> HTML5</span>
+                <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span><i class="fab fa-js"></i> JavaScript</span>
+                <span><i class="fab fa-react"></i> React</span>
+                <span><i class="fab fa-vuejs"></i> Vue.js</span>
+                <span><i class="fab fa-node-js"></i> Node.js</span>
+                <span><i class="fab fa-python"></i> Python</span>
+                <span><i class="fas fa-database"></i> SQL</span>
+                <span><i class="fab fa-git-alt"></i> Git</span>
+                <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                <span><i class="fas fa-code"></i> C++</span>
+                <span><i class="fab fa-microsoft"></i> C#</span>
+            </div>
+        </div>
+    </section>
+
     <!-- Stats -->
-    <section class="stats-section">
         <div class="container">
             <div class="stats-grid" id="statsGrid">
                 <div class="stat-card">
@@ -148,12 +190,12 @@
             </div>
             <div class="about-grid">
                 <div class="about-content reveal">
-                    <p class="about-text">
+                    <p class="about-text" data-reveal-text>
                         Desenvolvedor Full Stack com experiência em aplicações web e sistemas corporativos,
                         atuando no front-end e back-end. Forte base em Ciência da Computação, integração de sistemas,
                         bancos de dados e boas práticas de desenvolvimento.
                     </p>
-                    <p class="about-text">
+                    <p class="about-text" data-reveal-text>
                         Durante minha jornada, desenvolvi aplicações em Java, Node.js, C++ e construí interfaces
                         web interativas utilizando HTML, CSS e JavaScript. Atualmente aprofundando conhecimentos
                         em Python e C# para expandir ainda mais meu arsenal técnico.
@@ -508,6 +550,15 @@
             </div>
         </div>
     </footer>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots">
+        <a href="#hero" class="nav-dot active" data-section="hero" aria-label="Início"><span>Início</span></a>
+        <a href="#about" class="nav-dot" data-section="about" aria-label="Sobre"><span>Sobre</span></a>
+        <a href="#skills" class="nav-dot" data-section="skills" aria-label="Skills"><span>Skills</span></a>
+        <a href="#projects" class="nav-dot" data-section="projects" aria-label="Projetos"><span>Projetos</span></a>
+        <a href="#contact" class="nav-dot" data-section="contact" aria-label="Contato"><span>Contato</span></a>
+    </nav>
 
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
