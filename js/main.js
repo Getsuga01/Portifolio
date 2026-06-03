@@ -51,9 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* --- Navbar --- */
     const navbar = document.getElementById('navbar');
+    let lastScrollY = 0;
 
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        const currentY = window.scrollY;
+        navbar.classList.toggle('scrolled', currentY > 60);
+
+        if (currentY > 120) {
+            if (currentY > lastScrollY) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+            }
+        } else {
+            navbar.classList.remove('nav-hidden');
+        }
+
+        lastScrollY = currentY;
     }, { passive: true });
 
     /* --- Mobile Menu --- */
@@ -170,12 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 statsDone = true;
                 statNumbers.forEach(el => {
                     const target = parseInt(el.dataset.target);
+                    const suffix = el.dataset.suffix || '';
                     const start = performance.now();
                     function update(now) {
                         const p = Math.min((now - start) / 2000, 1);
                         el.textContent = Math.floor(p * target);
                         if (p < 1) requestAnimationFrame(update);
-                        else el.textContent = target;
+                        else el.textContent = target + suffix;
                     }
                     requestAnimationFrame(update);
                 });
