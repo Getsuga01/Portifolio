@@ -393,20 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealTexts.forEach(el => revealTextObserver.observe(el));
     }
 
-    /* --- Download CV --- */
-    const btnCv = document.getElementById('btnCv');
-    if (btnCv) {
-        btnCv.addEventListener('click', () => {
-            btnCv.innerHTML = '<i class="fas fa-file-pdf"></i> CV não encontrado';
-            btnCv.style.opacity = '0.5';
-            btnCv.disabled = true;
-            setTimeout(() => {
-                btnCv.innerHTML = '<i class="fas fa-download"></i> Download CV';
-                btnCv.style.opacity = '1';
-                btnCv.disabled = false;
-            }, 2000);
-        });
-    }
+
 
     /* --- Smooth Scroll --- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
