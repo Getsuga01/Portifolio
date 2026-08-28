@@ -63,6 +63,7 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
+        <canvas class="particles-canvas" id="particlesCanvas"></canvas>
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-text">
@@ -123,6 +124,17 @@
             </svg>
         </div>
     </section>
+
+    <!-- Now Section -->
+    <div class="now-section">
+        <div class="container">
+            <div class="now-badge">
+                <span class="now-pulse"></span>
+                <span>Atualmente estudando <strong>IA & Machine Learning</strong> e aprimorando <strong>arquitetura de microsserviços</strong></span>
+                <span class="now-date">Ago 2026</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Tech Marquee -->
     <section class="marquee-section">
@@ -264,7 +276,7 @@
                     </div>
                 </div>
                 <div class="skill-group reveal">
-                    <h3 class="skill-group-title">Backend & Dados</h3>
+                    <h3 class="skill-group-title">Backend</h3>
                     <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fab fa-node-js"></i> Node.js</span>
@@ -274,11 +286,28 @@
                     </div>
                     <div class="skill-item" data-tilt>
                         <div class="skill-header">
+                            <span><i class="fab fa-java"></i> Java + Spring Boot</span>
+                            <span class="skill-percent" data-target="80">0%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+                    </div>
+                    <div class="skill-item" data-tilt>
+                        <div class="skill-header">
+                            <span><i class="fas fa-cubes"></i> .NET</span>
+                            <span class="skill-percent" data-target="75">0%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+                    </div>
+                    <div class="skill-item" data-tilt>
+                        <div class="skill-header">
                             <span><i class="fab fa-python"></i> Python</span>
                             <span class="skill-percent" data-target="75">0%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
                     </div>
+                </div>
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">Dados</h3>
                     <div class="skill-item" data-tilt>
                         <div class="skill-header">
                             <span><i class="fas fa-database"></i> SQL & Databases</span>
@@ -392,79 +421,81 @@
                     <button class="filter-btn" data-filter="frontend">Front-end</button>
                     <button class="filter-btn" data-filter="backend">Back-end</button>
                     <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                    <button class="filter-btn" data-filter="spring">Java + Spring</button>
+                    <button class="filter-btn" data-filter="dotnet">.NET</button>
                 </div>
             </div>
             <div class="projects-grid" id="projectsGrid">
 
                 <div class="project-card" data-category="fullstack" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
-                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(6,182,212,0.08), #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
+                            <a href="https://github.com/Getsuga01/techfix-erp" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="https://github.com/Getsuga01/techfix-erp" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <div class="project-tags">
-                            <span>React</span><span>Node.js</span><span>MongoDB</span>
+                            <span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span>
                         </div>
-                        <h3>E-Commerce Platform</h3>
-                        <p>Plataforma de e-commerce completa com carrinho, autenticação e painel administrativo.</p>
+                        <h3>TechFix ERP</h3>
+                        <p>Sistema completo de gestão para assistência técnica com FSM, RBAC, laudos PDF e relatórios. <span class="project-badge">65 testes</span></p>
                     </div>
                 </div>
 
-                <div class="project-card" data-category="frontend" data-tilt>
+                <div class="project-card" data-category="fullstack" data-tilt>
                     <div class="project-thumb">
-                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
-                        <div class="project-icon"><i class="fas fa-chart-bar"></i></div>
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(99,102,241,0.08), #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-game-controller"></i></div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
+                            <a href="https://github.com/Getsuga01/GameVault" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="https://github.com/Getsuga01/GameVault" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
                         </div>
                     </div>
                     <div class="project-info">
                         <div class="project-tags">
-                            <span>React</span><span>Chart.js</span><span>CSS</span>
+                            <span>Next.js</span><span>Docker</span><span>TypeScript</span>
+                        </div>
+                        <h3>GameVault</h3>
+                        <p>landing page moderna para empresas de jogos com foco em conversão e design responsivo.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="backend spring dotnet" data-tilt>
+                    <div class="project-thumb">
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(244,114,182,0.12), rgba(168,85,247,0.08), #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-university"></i></div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Getsuga01/Banco_JavaS" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="https://github.com/Getsuga01/Banco_JavaS" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span>Spring Boot</span><span>Java</span><span>.NET</span><span>Security</span>
+                        </div>
+                        <h3>Banco Digital</h3>
+                        <p>Sistema bancário com POO, segurança Spring, persistência em arquivo e geração de documentação JavaDoc.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="fullstack" data-tilt>
+                    <div class="project-thumb">
+                        <div class="project-gradient" style="background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(6,182,212,0.08), #09090b);"></div>
+                        <div class="project-icon"><i class="fas fa-database"></i></div>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Getsuga01/DashBoard" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
+                            <a href="https://github.com/Getsuga01/DashBoard" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span>TypeScript</span><span>React</span><span>Chart.js</span>
                         </div>
                         <h3>Dashboard Analytics</h3>
                         <p>Dashboard interativo para visualização de dados com gráficos dinâmicos e dark mode.</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="backend" data-tilt>
-                    <div class="project-thumb">
-                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
-                        <div class="project-icon"><i class="fas fa-cloud"></i></div>
-                        <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Node.js</span><span>Express</span><span>PostgreSQL</span>
-                        </div>
-                        <h3>API RESTful</h3>
-                        <p>API completa com autenticação JWT, validação de dados e documentação Swagger.</p>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="frontend" data-tilt>
-                    <div class="project-thumb">
-                        <div class="project-gradient" style="background: linear-gradient(135deg, #27272a, #18181b, #09090b);"></div>
-                        <div class="project-icon"><i class="fas fa-film"></i></div>
-                        <div class="project-overlay">
-                            <a href="https://github.com/Getsuga01" target="_blank" class="project-link"><i class="fab fa-github"></i> Código</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Visitar</a>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-tags">
-                            <span>Vue.js</span><span>API</span><span>SCSS</span>
-                        </div>
-                        <h3>Movie Finder</h3>
-                        <p>Aplicativo para busca de filmes com integração de API externa e design responsivo.</p>
                     </div>
                 </div>
 

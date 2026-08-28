@@ -1,5 +1,6 @@
 /* ============================================
    Ronaldo Avansini | Portfolio — Main Script
+   Aurora Premium Edition
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,6 +38,127 @@ document.addEventListener('DOMContentLoaded', () => {
             const t = e.target.closest(interactiveEls);
             cursorRing.classList.toggle('hovering', !!t);
         });
+    }
+
+    /* --- Particles Canvas --- */
+    const canvas = document.getElementById('particlesCanvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animId;
+        let canvasMouseX = 0, canvasMouseY = 0;
+
+        function resizeCanvas() {
+            const hero = canvas.parentElement;
+            canvas.width = hero.offsetWidth;
+            canvas.height = hero.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2 + 0.5;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.hue = Math.random() > 0.5 ? 239 : 187; // indigo or cyan
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Mouse attraction
+                const dx = canvasMouseX - this.x;
+                const dy = canvasMouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 200) {
+                    this.x += dx * 0.002;
+                    this.y += dy * 0.002;
+                    this.opacity = Math.min(this.opacity + 0.01, 0.6);
+                } else {
+                    this.opacity = Math.max(this.opacity - 0.005, 0.1);
+                }
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                const sat = this.hue === 239 ? '76%' : '82%';
+                const light = this.hue === 239 ? '67%' : '47%';
+                ctx.fillStyle = `hsla(${this.hue}, ${sat}, ${light}, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // Create particles (fewer for perf)
+        const particleCount = Math.min(50, Math.floor(canvas.width / 25));
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        canvas.parentElement.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            canvasMouseX = e.clientX - rect.left;
+            canvasMouseY = e.clientY - rect.top;
+        });
+
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        const opacity = (1 - dist / 120) * 0.15;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(129, 140, 248, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            drawConnections();
+            animId = requestAnimationFrame(animateParticles);
+        }
+
+        // Only animate when visible
+        const heroSection = document.getElementById('hero');
+        const particleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateParticles();
+                } else {
+                    cancelAnimationFrame(animId);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (heroSection) particleObserver.observe(heroSection);
     }
 
     /* --- Progress Bar --- */
@@ -148,16 +270,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width;
             const y = (e.clientY - rect.top) / rect.height;
-            const rx = (y - 0.5) * -8;
-            const ry = (x - 0.5) * 8;
+            const rx = (y - 0.5) * -12;
+            const ry = (x - 0.5) * 12;
             card.style.transform =
-                `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.01,1.01,1.01)`;
+                `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
             card.style.transition = 'transform 0.1s ease-out';
         });
 
         card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1,1,1)';
+            card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1,1,1)';
             card.style.transition = 'transform 0.5s cubic-bezier(0.2,0.8,0.2,1)';
+        });
+    });
+
+    /* --- Glow Card Effect (cursor-following glow on cards) --- */
+    document.querySelectorAll('.service-card, .project-card, .stat-card, .skill-group, .timeline-content').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--glow-x', `${x}px`);
+            card.style.setProperty('--glow-y', `${y}px`);
+            card.style.background = `
+                radial-gradient(250px circle at ${x}px ${y}px, rgba(99, 102, 241, 0.06), transparent 60%),
+                rgba(24, 24, 27, 0.5)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.background = '';
         });
     });
 
@@ -172,7 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
 
-    revealEls.forEach(el => revealObserver.observe(el));
+    revealEls.forEach((el, i) => {
+        if (el.closest('.skills-grid')) {
+            el.style.transitionDelay = `${i * 0.1}s`;
+        }
+        revealObserver.observe(el);
+    });
 
     /* --- Count Up --- */
     const statNumbers = document.querySelectorAll('.stat-number[data-target]');
@@ -248,7 +394,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('active');
                 const f = btn.dataset.filter;
                 projectCards.forEach(card => {
-                    if (f === 'all' || card.dataset.category === f) {
+                    const cats = (card.dataset.category || '').split(' ');
+                    const show = f === 'all' || cats.includes(f);
+                    if (show) {
                         card.style.display = '';
                         card.style.opacity = '1';
                         card.style.transform = '';
@@ -262,6 +410,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* --- Staggered Project Card Entrance --- */
+    const projectCardsAll = document.querySelectorAll('.project-card');
+    if (projectCardsAll.length) {
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.project-card');
+                    cards.forEach((card, i) => {
+                        card.style.animationDelay = `${i * 0.15}s`;
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(40px)';
+                        requestAnimationFrame(() => {
+                            card.style.animation = 'cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+                        });
+                    });
+                    projectObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const projectsGrid = document.querySelector('.projects-grid');
+        if (projectsGrid) projectObserver.observe(projectsGrid);
+    }
+
     /* --- Contact Form --- */
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -271,16 +443,18 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = contactForm.querySelector('.btn-submit');
             const orig = btn.innerHTML;
-            btn.innerHTML = 'Enviando...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             btn.disabled = true;
+            btn.style.opacity = '0.7';
 
             setTimeout(() => {
-                btn.innerHTML = 'Mensagem Enviada!';
-                btn.style.opacity = '0.5';
+                btn.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
+                btn.style.opacity = '1';
+                btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
                 setTimeout(() => {
                     contactForm.reset();
                     btn.innerHTML = orig;
-                    btn.style.opacity = '1';
+                    btn.style.background = '';
                     btn.disabled = false;
                 }, 2500);
             }, 1500);
@@ -308,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = (e.clientX / window.innerWidth) * 100;
             const y = (e.clientY / window.innerHeight) * 100;
             spotlight.style.background =
-                `radial-gradient(600px at ${x}% ${y}%, rgba(255, 255, 255, 0.035), transparent 60%)`;
+                `radial-gradient(600px at ${x}% ${y}%, rgba(99, 102, 241, 0.04), transparent 60%)`;
             if (!spotlightVisible) {
                 spotlight.classList.add('visible');
                 spotlightVisible = true;
@@ -392,8 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         revealTexts.forEach(el => revealTextObserver.observe(el));
     }
-
-
 
     /* --- Smooth Scroll --- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
